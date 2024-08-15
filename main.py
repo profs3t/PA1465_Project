@@ -1,31 +1,33 @@
 import pickle
 import hashlib
 
-test_data = 1
+# Mac, Win, Linux
+# 3.9, 3.10, 3.11
 
-def hashData(data, python_version):
-    hashPickle = hashlib.sha256()
-    hashPickle.update(pickle.dumps(data))
-    # Write the hash to a file named 'python_version'.hash
-    with open(f"python_{python_version}.hash", "wb") as f:
-        f.write(hashPickle.digest())
+test_float = 1.253647850236475839678956576587685657456476
+
+def recursiveList():
+    lst = []
+    lst.append(lst)
+    return lst
+
+test_recursive_list = recursiveList()
+
+def save_pickle(data, filename):
+    with open(filename, "wb") as f:
+        pickle.dump(data, f)
+
+def get_hash(filename):
+    with open(filename, "rb") as f:
+        data = f.read()
+    return hashlib.sha256(data).hexdigest()
 
 def compareHashes(filename1, filename2):
-    with open(filename1, "rb") as f:
-        hash1 = f.read()
-    with open(filename2, "rb") as f:
-        hash2 = f.read()
+    hash1 = get_hash(filename1)
+    hash2 = get_hash(filename2)
     return hash1 == hash2
 
-print(compareHashes('python_3_12_2.hash', 'python_3_9_18.hash'))
+def getPickles(operating_system, python_version):
+    save_pickle(test_float, f'float_{operating_system}_{python_version}.pkl')
+    save_pickle(test_recursive_list, f'list_{operating_system}_{python_version}.pkl')
 
-
-def test_correct(input):
-    serialized = pickle.dumps(input)
-    deserialized = pickle.loads(serialized)
-
-    hash_deserialized = hashlib.sha256(pickle.dumps(deserialized)).hexdigest()
-
-    hash_input = hashlib.sha256(pickle.dumps(input)).hexdigest()
-
-    return hash_input == hash_deserialized
