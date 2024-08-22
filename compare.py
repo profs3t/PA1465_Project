@@ -1,15 +1,19 @@
+""" Theodor Maran, Abbe Möllerström, Emil Liehl, DVAMI21, BTH """
+
 import hashlib
 from pathlib import Path
 
-WRITE_FILE = open('example.txt', 'a+')
+WRITE_FILE = open('example.txt', 'a+', encoding='utf-8')
 
 def get_hash(filename):
+    """ Get the hash of a file """
     filepath = Path(filename) / (filename + ".pkl")
-    with open(filepath, "rb") as f:
-        data = f.read()
+    with open(filepath, "rb") as file:
+        data = file.read()
     return hashlib.sha256(data).hexdigest()
 
-def compareHashes(filename1, filename2):
+def compare_hashes(filename1, filename2):
+    """ Compare the hashes of two files """
     hash1 = get_hash(filename1)
     hash2 = get_hash(filename2)
     if hash1 != hash2:
@@ -17,6 +21,7 @@ def compareHashes(filename1, filename2):
     return hash1 == hash2
 
 def generate_filenames():
+    """ Generate filenames for the different operating systems and python versions """
     os_list = ["windows-latest", "macOS-latest", "ubuntu-latest"]
     version_list = ["3.9", "3.11", "3.12"]
     filenames = [[], [], []]
@@ -26,13 +31,14 @@ def generate_filenames():
     return filenames
 
 def compare_files(filenames):
+    """ Compare the files """
     success_count = 0
     fail_count = 0
     # Compare files within the same operating system
     for os_files in filenames:
         for i in range(len(os_files)):
             for j in range(i + 1, len(os_files)):
-                result = compareHashes(os_files[i], os_files[j])
+                result = compare_hashes(os_files[i], os_files[j])
                 if result:
                     success_count+=1
                 else:
@@ -42,7 +48,7 @@ def compare_files(filenames):
     for version_index in range(len(filenames[0])):
         for i in range(len(filenames)):
             for j in range(i + 1, len(filenames)):
-                resualt = compareHashes(filenames[i][version_index], filenames[j][version_index])
+                resualt = compare_hashes(filenames[i][version_index], filenames[j][version_index])
                 if resualt:
                     success_count+=1
                 else:
@@ -52,6 +58,7 @@ def compare_files(filenames):
     print("Fail:", fail_count)
 
 def main():
+    """ Main function """
     filenames = generate_filenames()
     compare_files(filenames)
     print("Comparison done")

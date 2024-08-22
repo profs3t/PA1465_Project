@@ -1,22 +1,26 @@
+""" Theodor Maran, Abbe Möllerström, Emil Liehl, DVAMI21, BTH """
+
 import pickle
 import sys
 import math
 
-def recursiveList():
+def recursive_list():
+    """ Create a recursive list """
     lst = []
     lst.append(lst)
     return lst
 
-test_recursive_list = recursiveList()
+test_recursive_list = recursive_list()
 
 # Random class
 class Random:
+    """ Random number generator class """
     def __init__(self, seed):
         self.seed = seed
 
     def random(self):
+        """ Generate a random number """
         self.seed = (self.seed * 1103515245 + 12345) % 2**32
-        return
 
 test_dict = {
     "name": "Luna",
@@ -40,12 +44,13 @@ test_dict = {
 }
 
 def save_pickle(data):
+    """ Save data to a pickle file """
     python_version = sys.argv[1]
     operating_system = sys.argv[2]
 
-    filename = f"generated-data-{operating_system}-{python_version}.pkl"  # Adjust extension as needed
+    filename = f"generated-data-{operating_system}-{python_version}.pkl"
 
-    with open(filename, "wb") as f:
-        pickle.dump(data, f)
+    with open(filename, "wb") as file:
+        pickle.dump(data, file)
 
 save_pickle(test_dict)
