@@ -25,11 +25,11 @@ jobs:
         python generate_data.py ${{ matrix.python-version }} ${{ matrix.os }}
 
     - name: Upload generated data
-        uses: actions/upload-artifact@v3
-        with:
-          name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
-          path: pkl_files/
-    
+      uses: actions/upload-artifact@v3
+      with:
+        name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
+        path: pkl_files/
+
     compare:
       runs-on: ubuntu-latest
       needs: generate
