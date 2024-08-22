@@ -1,7 +1,8 @@
 import hashlib
+from pathlib import Path
 
 def get_hash(filename):
-    filepath = filename
+    filepath = Path(filename) / filename + ".pkl"
     with open(filepath, "rb") as f:
         data = f.read()
     return hashlib.sha256(data).hexdigest()
@@ -21,15 +22,6 @@ def generate_filenames():
         for version in version_list:
             filenames[index].append(f"generated-data-{operating_system}-{version}")
     return filenames
-
-# def compare_files(filenames):
-#     for criteria in filenames:
-#         for i in range(len(filenames[criteria])):
-#             for j in range(i+1, len(filenames[criteria])):
-#                 if not compareHashes(filenames[criteria][i], filenames[criteria][j]):
-#                     print(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are different")
-#                     with open("comparison.txt", "a") as f:
-#                         f.write(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are different\n")
 
 def compare_files(filenames):
     #compare files in the same operating system
