@@ -35,10 +35,14 @@ test_dict = {
 def save_pickle(data):
     python_version = sys.argv[1]
     operating_system = sys.argv[2]
+    
 
     filename = f"{operating_system}_{python_version}.pkl"  # Adjust extension as needed
+    folder_path = Path("pkl_files") / filename
+    folder_path.mkdir(parents=True, exist_ok=True)
+    filepath = folder_path / filename
 
-    with open(Path("pkl_files") / filename, "wb") as f:
+    with open(folder_path, "wb") as f:
         pickle.dump(data, f)
 
 save_pickle(test_dict)

@@ -15,7 +15,7 @@ def compareHashes(filename1, filename2):
 
 def read_filenames():
     #create filenames dict
-    os_dict = {"windows-latest": [], "mac-latest": [], "linux-latest": []}
+    os_dict = {"windows-latest": [], "macOS-latest": [], "ubuntu-latest": []}
     version_dict = {"3.9": [], "3.11": [], "3.12": []} 
 
     for filename in os.listdir("pkl_files"):
@@ -23,7 +23,7 @@ def read_filenames():
             os_dict["windows-latest"].append(filename)
         elif filename.startswith("mac"):
             os_dict["mac-latest"].append(filename)
-        elif filename.startswith("linux"):
+        elif filename.startswith("ubuntu"):
             os_dict["linux-latest"].append(filename)
 
         if filename.endswith("3.9.pkl"):
@@ -40,8 +40,7 @@ def compare_files(filenames):
             for j in range(i+1, len(filenames[criteria])):
                 if not compareHashes(filenames[criteria][i], filenames[criteria][j]):
                     # Write to a file
-                    with open("different_files.txt", "a") as f:
-                        f.write(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are different\n")
+                    print(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are different")
 
 def main():
     os_dict, version_dict = read_filenames()
