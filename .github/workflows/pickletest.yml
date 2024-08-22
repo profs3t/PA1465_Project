@@ -28,25 +28,19 @@ jobs:
         python generate_data.py ${{ matrix.python-version }} ${{ matrix.os }}
 
     - name: Upload generated data
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
         path: generated-data-${{ matrix.os }}-${{ matrix.python-version }}.pkl
 
   compare:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: [3.9, 3.11, 3.12]
     needs: generate
     steps:
     - uses: actions/checkout@v2
 
     - name: Download generated data
-      uses: actions/download-artifact@v2
-      with:
-        name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
+      uses: actions/download-artifact@v4
 
     - name: compare generated files
       run: |
