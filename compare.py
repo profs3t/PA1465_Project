@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 def get_hash(filename):
-    filepath = Path("pkl_files") / filename
+    filepath = filename
     with open(filepath, "rb") as f:
         data = f.read()
     return hashlib.sha256(data).hexdigest()
@@ -18,7 +18,7 @@ def read_filenames():
     os_dict = {"windows-latest": [], "macOS-latest": [], "ubuntu-latest": []}
     version_dict = {"3.9": [], "3.11": [], "3.12": []} 
 
-    for filename in os.listdir("pkl_files"):
+    for filename in os.listdir("."):
         if filename.startswith("windows"):
             os_dict["windows-latest"].append(filename)
         elif filename.startswith("mac"):

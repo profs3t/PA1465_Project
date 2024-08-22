@@ -31,7 +31,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
-        path: pkl_files\
 
   compare:
     runs-on: ubuntu-latest
@@ -47,7 +46,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
-        path: pkl_files\
 
     - name: compare generated files
       run: |
