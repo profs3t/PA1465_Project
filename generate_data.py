@@ -38,7 +38,7 @@ def save_pickle(data):
 
     filename = f"{operating_system}_{python_version}.pkl"  # Adjust extension as needed
 
-    with filename.open('wb') as f:
+    with open(filename, "wb") as f:
         pickle.dump(data, f)
 
 save_pickle(test_dict)
