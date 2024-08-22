@@ -1,5 +1,3 @@
-<#Set up for different environments
-
 name: Pickle Test
 
 on: [push, pull_request]
