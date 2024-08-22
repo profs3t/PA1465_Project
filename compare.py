@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-WRITE_FILE = open('example.txt', 'ar')
+WRITE_FILE = open('example.txt', 'a+')
 
 def get_hash(filename):
     filepath = Path(filename) / (filename + ".pkl")
