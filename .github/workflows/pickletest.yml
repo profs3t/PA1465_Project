@@ -35,6 +35,10 @@ jobs:
 
   compare:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.9, 3.11, 3.12]
     needs: generate
     steps:
     - uses: actions/checkout@v2
