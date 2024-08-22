@@ -13,6 +13,8 @@ def compareHashes(filename1, filename2):
     if hash1 != hash2:
         with open("comparison.txt", "a") as f:
             f.write(f"Files {filename1} and {filename2} are different\n")
+    else:
+        print(f"Files {filename1} and {filename2} are the same")
 
 def generate_filenames():
     os_list = ["windows-latest", "macOS-latest", "ubuntu-latest"]
