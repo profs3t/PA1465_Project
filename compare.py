@@ -26,10 +26,9 @@ def generate_filenames():
     return filenames
 
 def compare_files(filenames):
-    #compare files in the same operating system
     success_count = 0
     fail_count = 0
-        # Compare files within the same operating system
+    # Compare files within the same operating system
     for os_files in filenames:
         for i in range(len(os_files)):
             for j in range(i + 1, len(os_files)):
@@ -39,7 +38,7 @@ def compare_files(filenames):
                 else:
                     fail_count+=1
 
-    # Compare files across different operating systems for the same version
+    # Compare files across different operating systems for the same python version
     for version_index in range(len(filenames[0])):
         for i in range(len(filenames)):
             for j in range(i + 1, len(filenames)):
@@ -49,49 +48,13 @@ def compare_files(filenames):
                 else:
                     fail_count+=1
 
-    print(success_count)
-    print(fail_count)
-
-    # compareHashes(filenames[0][0], filenames[0][1])
-    # compareHashes(filenames[0][0], filenames[0][2])
-    # compareHashes(filenames[0][1], filenames[0][2])
-
-    # #macOS
-    # compareHashes(filenames[1][0], filenames[1][1])
-    # compareHashes(filenames[1][0], filenames[1][2])
-    # compareHashes(filenames[1][1], filenames[1][2])
-
-    # #ubuntu
-    # compareHashes(filenames[2][0], filenames[2][1])
-    # compareHashes(filenames[2][0], filenames[2][2])
-    # compareHashes(filenames[2][1], filenames[2][2])
-
-    # #Compare files in different operating system, same version
-    # #3.9
-    # compareHashes(filenames[0][0], filenames[1][0])
-    # compareHashes(filenames[0][0], filenames[2][0])
-    # compareHashes(filenames[1][0], filenames[2][0])
-    # #3.11
-    # compareHashes(filenames[0][1], filenames[1][1])
-    # compareHashes(filenames[0][1], filenames[2][1])
-    # compareHashes(filenames[1][1], filenames[2][1])
-    # #3.12
-    # compareHashes(filenames[0][2], filenames[1][2])
-    # compareHashes(filenames[0][2], filenames[2][2])
-    # compareHashes(filenames[1][2], filenames[2][2])
-
-    """
-    for i in range(3):
-        for j in range(3):
-            compareHashes(filenames[i][j], filenames[i][j])
-    """
+    print("Success:", success_count)
+    print("Fail:", fail_count)
 
 def main():
     filenames = generate_filenames()
     compare_files(filenames)
     print("Comparison done")
-
-    #print all rows from WRITE_FILE
     print(WRITE_FILE.read())
     WRITE_FILE.close()
 
