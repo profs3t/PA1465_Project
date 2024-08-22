@@ -28,7 +28,7 @@ jobs:
         python generate_data.py ${{ matrix.python-version }} ${{ matrix.os }}
 
     - name: Upload generated data
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
         path: .
@@ -44,7 +44,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Download generated data
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v2
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
 
