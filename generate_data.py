@@ -36,7 +36,7 @@ def save_pickle(data):
     python_version = sys.argv[1]
     operating_system = sys.argv[2]
 
-    filename = f"{operating_system}-{python_version}.pkl"  # Adjust extension as needed
+    filename = f"generated-data-{operating_system}-{python_version}.pkl"  # Adjust extension as needed
 
     with open(filename, "wb") as f:
         pickle.dump(data, f)
