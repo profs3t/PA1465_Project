@@ -42,7 +42,7 @@ def save_pickle(data):
     folder_path.mkdir(parents=True, exist_ok=True)
     filepath = folder_path / filename
 
-    with open(folder_path, "wb") as f:
+    with open(filepath, "wb") as f:
         pickle.dump(data, f)
 
 save_pickle(test_dict)
