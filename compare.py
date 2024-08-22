@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-WRITE_FILE = "comparison.txt"
+WRITE_FILE = open('example.txt', 'a')
 
 def get_hash(filename):
     filepath = Path(filename) / (filename + ".pkl")
@@ -13,10 +13,11 @@ def compareHashes(filename1, filename2):
     hash1 = get_hash(filename1)
     hash2 = get_hash(filename2)
     if hash1 != hash2:
-        with open(WRITE_FILE, "a") as f:
-            f.write(f"Files {filename1} and {filename2} are different\n")
+        WRITE_FILE.write(f"Files {filename1} and {filename2} are different\n")
+        return False
     else:
         print(f"Files {filename1} and {filename2} are the same")
+        return True
 
 def generate_filenames():
     os_list = ["windows-latest", "macOS-latest", "ubuntu-latest"]
@@ -29,18 +30,30 @@ def generate_filenames():
 
 def compare_files(filenames):
     #compare files in the same operating system
-
+    success_count = 0
+    fail_count = 0
         # Compare files within the same operating system
     for os_files in filenames:
         for i in range(len(os_files)):
             for j in range(i + 1, len(os_files)):
-                compareHashes(os_files[i], os_files[j])
+                result = compareHashes(os_files[i], os_files[j])
+                if result:
+                    success_count+=1
+                else:
+                    fail_count+=1
 
     # Compare files across different operating systems for the same version
     for version_index in range(len(filenames[0])):
         for i in range(len(filenames)):
             for j in range(i + 1, len(filenames)):
-                compareHashes(filenames[i][version_index], filenames[j][version_index])
+                resualt = compareHashes(filenames[i][version_index], filenames[j][version_index])
+                if resualt:
+                    success_count+=1
+                else:
+                    fail_count+=1
+
+    print(success_count)
+    print(fail_count)
 
     # compareHashes(filenames[0][0], filenames[0][1])
     # compareHashes(filenames[0][0], filenames[0][2])
@@ -82,8 +95,8 @@ def main():
     print("Comparison done")
 
     #print all rows from WRITE_FILE
-    with open(WRITE_FILE, "r") as f:
-        print(f.read())
+    print(WRITE_FILE.read())
+    WRITE_FILE.close()
 
 if __name__ == "__main__":
     main()
