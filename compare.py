@@ -2,7 +2,7 @@ import hashlib
 from pathlib import Path
 
 def get_hash(filename):
-    filepath = Path(filename) / filename + ".pkl"
+    filepath = Path(filename) / (filename + ".pkl")
     with open(filepath, "rb") as f:
         data = f.read()
     return hashlib.sha256(data).hexdigest()
