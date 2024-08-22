@@ -19,7 +19,7 @@ def generate_filenames():
     filenames = [[], [], []]
     for index, operating_system in enumerate(os_list):
         for version in version_list:
-            filenames[index].append(f"generated-data-{operating_system}-{version}.pkl")
+            filenames[index].append(f"generated-data-{operating_system}-{version}")
     return filenames
 
 # def compare_files(filenames):
