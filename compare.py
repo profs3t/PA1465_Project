@@ -38,11 +38,9 @@ def compare_files(filenames):
         for i in range(len(filenames[criteria])):
             for j in range(i+1, len(filenames[criteria])):
                 if not compareHashes(filenames[criteria][i], filenames[criteria][j]):
-                    #Save the filenames that are different
-                    folder_name = "results"
-                    Path(folder_name).mkdir(parents=True, exist_ok=True)
-                    with open(f"{folder_name}/{criteria}.txt", "a") as f:
-                        f.write(f"{filenames[criteria][i]} and {filenames[criteria][j]} are different\n")
+                    print(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are different")
+                else:
+                    print(f"Files {filenames[criteria][i]} and {filenames[criteria][j]} are the same")
 
 def main():
     os_dict, version_dict = read_filenames()
