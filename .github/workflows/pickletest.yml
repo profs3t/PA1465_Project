@@ -47,6 +47,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: generated-data-${{ matrix.os }}-${{ matrix.python-version }}
+        path: generated-data
 
     - name: compare generated files
       run: |
