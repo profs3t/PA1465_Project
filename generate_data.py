@@ -15,7 +15,7 @@ test_dict = {
     "name": "Luna",
     "age": 27,
     "occupation": "Engineer",
-    "hobbies": ["painting", "cycling", "gaming"],
+    "hobbies": ["painting", "cycling", test_recursive_list],
     "is_student": False,
     "height_cm": 170.5,
     "languages": {
@@ -24,7 +24,7 @@ test_dict = {
         "learning": "Japanese"
     },
     "favorite_foods": ["sushi", "pasta", "ice cream"],
-    "lucky_numbers": [7, 13, 42],
+    "lucky_numbers": [test_float, 13, 42],
     "pet": {
         "type": "dog",
         "name": "Buddy",
