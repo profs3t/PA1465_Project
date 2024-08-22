@@ -17,7 +17,7 @@ def compareHashes(filename1, filename2):
 def read_filenames():
     #create filenames dict
     os_dict = {"windows-latest": [], "mac-latest": [], "linux-latest": []}
-    version_dict = {"3.6": [], "3.7": [], "3.8": [], "3.9": [], "3.10": [], "3.11": []} 
+    version_dict = {"3.9": [], "3.11": [], "3.12": []} 
 
     for filename in os.listdir("pkl_files"):
         if filename.startswith("windows"):
@@ -27,18 +27,12 @@ def read_filenames():
         elif filename.startswith("linux"):
             os_dict["linux-latest"].append(filename)
         
-        if filename.endswith("3.6.pkl"):
-            version_dict["3.6"].append(filename)
-        elif filename.endswith("3.7.pkl"):
-            version_dict["3.7"].append(filename)
-        elif filename.endswith("3.8.pkl"):
-            version_dict["3.8"].append(filename)
-        elif filename.endswith("3.9.pkl"):
+        if filename.endswith("3.9.pkl"):
             version_dict["3.9"].append(filename)
-        elif filename.endswith("3.10.pkl"):
-            version_dict["3.10"].append(filename)
         elif filename.endswith("3.11.pkl"):
             version_dict["3.11"].append(filename)
+        elif filename.endswith("3.12.pkl"):
+            version_dict["3.12"].append(filename)
     return os_dict, version_dict
 
 def compare_files(filenames):
@@ -56,5 +50,6 @@ def main():
     os_dict, version_dict = read_filenames()
     compare_files(os_dict)
     compare_files(version_dict)
+    print("Comparison done")
 
 
