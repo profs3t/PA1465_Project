@@ -12,8 +12,6 @@ def compareHashes(filename1, filename2):
     hash2 = get_hash(filename2)
     return hash1 == hash2
 
-
-
 def read_filenames():
     #create filenames dict
     os_dict = {"windows-latest": [], "mac-latest": [], "linux-latest": []}
@@ -26,7 +24,7 @@ def read_filenames():
             os_dict["mac-latest"].append(filename)
         elif filename.startswith("linux"):
             os_dict["linux-latest"].append(filename)
-        
+
         if filename.endswith("3.9.pkl"):
             version_dict["3.9"].append(filename)
         elif filename.endswith("3.11.pkl"):
@@ -52,4 +50,5 @@ def main():
     compare_files(version_dict)
     print("Comparison done")
 
-
+if __name__ == "__main__":
+    main()
