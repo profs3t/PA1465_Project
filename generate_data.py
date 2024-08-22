@@ -1,8 +1,7 @@
 import pickle
 import sys
-from pathlib import Path
+import math
 
-test_float = 1.253647850236475839
 
 def recursiveList():
     lst = []
@@ -17,18 +16,18 @@ test_dict = {
     "occupation": "Engineer",
     "hobbies": ["painting", "cycling", test_recursive_list],
     "is_student": False,
-    "height_cm": 170.5,
+    "height_cm": math.inf * math.pi,
     "languages": {
         "native": "English",
         "secondary": "Spanish",
         "learning": "Japanese"
     },
     "favorite_foods": ["sushi", "pasta", "ice cream"],
-    "lucky_numbers": [test_float, 13, 42],
+    "lucky_numbers": [7, math.pi, math.inf],
     "pet": {
         "type": "dog",
         "name": "Buddy",
-        "age": 4
+        "age": math.inf
     }
 }
 
