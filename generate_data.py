@@ -38,6 +38,10 @@ def save_pickle(data):
 
     folder_name = "pkl_files"
     folder_path = Path(folder_name)
+    
+    # Ensure the directory exists
+    folder_path.mkdir(parents=True, exist_ok=True)
+
     filename = f"{operating_system}_{python_version}.pkl"  # Adjust extension as needed
     file_path = folder_path / filename  # Use pathlib to construct the full file path
 
