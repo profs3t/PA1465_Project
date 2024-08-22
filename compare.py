@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-WRITE_FILE = open('example.txt', 'a')
+WRITE_FILE = open('example.txt', 'ar')
 
 def get_hash(filename):
     filepath = Path(filename) / (filename + ".pkl")
@@ -14,10 +14,7 @@ def compareHashes(filename1, filename2):
     hash2 = get_hash(filename2)
     if hash1 != hash2:
         WRITE_FILE.write(f"Files {filename1} and {filename2} are different\n")
-        return False
-    else:
-        print(f"Files {filename1} and {filename2} are the same")
-        return True
+    return hash1 == hash2
 
 def generate_filenames():
     os_list = ["windows-latest", "macOS-latest", "ubuntu-latest"]
