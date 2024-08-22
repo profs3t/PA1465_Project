@@ -37,7 +37,7 @@ def save_pickle(data):
     operating_system = sys.argv[2]
     
 
-    filename = f"{operating_system}_{python_version}.pkl"  # Adjust extension as needed
+    filename = f"{operating_system}-{python_version}.pkl"  # Adjust extension as needed
     folder_path = Path("pkl_files") / filename
     folder_path.mkdir(parents=True, exist_ok=True)
     filepath = folder_path / filename
