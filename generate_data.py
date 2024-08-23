@@ -1,30 +1,8 @@
-""" Theodor Maran, Abbe Möllerström, Emil Liehl, DVAMI21, BTH """
-
 import pickle
 import sys
 import math
 
-def recursive_list():
-    """ Create a recursive list """
-    lst = []
-    lst2 = []
-    lst2.append(lst)
-    return lst2
-
-test_recursive_list = recursive_list()
-
-# Random class
-# class RandomClass:
-#     """ Random number generator class """
-#     def __init__(self, seed):
-#         self.seed = seed
-
-#     def random(self):
-#         """ Generate a random number """
-#         self.seed = (self.seed * 1103515245 + 12345) % 2**32
-
-# randomClass = RandomClass(198)
-
+# Test data
 test_dict = {
     "name": "Luna",
     "age": 27,

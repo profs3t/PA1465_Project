@@ -43,7 +43,7 @@ def compare_files(filenames):
     """ Compare the files """
     success_count = 0
     fail_count = 0
-    # Compare files within the same operating system
+    # Compare files within the same operating system for different python versions
     for os_files in filenames:
         for i in range(len(os_files)):
             for j in range(i + 1, len(os_files)):
@@ -67,11 +67,10 @@ def compare_files(filenames):
     print("Fail:", fail_count)
 
 def compare_deserialized_data(filenames):
-    """ Compare the files """
+    """ Compare the objects """
     # Compare each file with the original object
     success_count = 0
     fail_count = 0
-    
     for operating_system in filenames:
         for version in operating_system:
             data = get_object(version)
