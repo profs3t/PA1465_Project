@@ -75,11 +75,7 @@ def compare_deserialized_data(filenames):
     for operating_system in filenames:
         for version in operating_system:
             data = get_object(version)
-            original_set = set(test_dict.items())
-            deserialized_set = set(data.items())
-            difference = original_set ^ deserialized_set
-            #If lenght of difference > 0
-            if difference:
+            if data != test_dict:
                 fail_count+=1
                 WRITE_FILE.write(f"Data in file {version} is different from the original data\n")
             else:
