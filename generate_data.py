@@ -7,8 +7,9 @@ import math
 def recursive_list():
     """ Create a recursive list """
     lst = []
-    lst.append(lst)
-    return lst
+    lst2 = []
+    lst2.append(lst)
+    return lst2
 
 test_recursive_list = recursive_list()
 
@@ -28,7 +29,7 @@ test_dict = {
     "name": "Luna",
     "age": 27,
     "occupation": "Engineer",
-    "hobbies": ["painting", "cycling", test_recursive_list],
+    "hobbies": ["painting", "cycling", "reading"],
     "is_student": False,
     "height_cm": math.inf * math.pi,
     "languages": {
