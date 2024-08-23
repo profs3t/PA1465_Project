@@ -55,4 +55,5 @@ def save_pickle(data):
     with open(filename, "wb") as file:
         pickle.dump(data, file)
 
-save_pickle(test_dict)
+if __name__ == "__main__":
+    save_pickle(test_dict)
