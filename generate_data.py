@@ -13,16 +13,16 @@ def recursive_list():
 test_recursive_list = recursive_list()
 
 # Random class
-class RandomClass:
-    """ Random number generator class """
-    def __init__(self, seed):
-        self.seed = seed
+# class RandomClass:
+#     """ Random number generator class """
+#     def __init__(self, seed):
+#         self.seed = seed
 
-    def random(self):
-        """ Generate a random number """
-        self.seed = (self.seed * 1103515245 + 12345) % 2**32
+#     def random(self):
+#         """ Generate a random number """
+#         self.seed = (self.seed * 1103515245 + 12345) % 2**32
 
-randomClass = RandomClass(198)
+# randomClass = RandomClass(198)
 
 test_dict = {
     "name": "Luna",
@@ -39,7 +39,7 @@ test_dict = {
     "favorite_foods": ["sushi", "pasta", "ice cream"],
     "lucky_numbers": [7, math.pi, math.inf],
     "pet": {
-        "type": randomClass,
+        "type": "dog",
         "name": "Buddy",
         "age": math.inf
     }
