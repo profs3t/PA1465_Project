@@ -2,6 +2,7 @@
 
 import hashlib
 from pathlib import Path
+import pickle
 
 WRITE_FILE = open('example.txt', 'a+', encoding='utf-8')
 
@@ -12,6 +13,13 @@ def get_hash(filename):
         data = file.read()
     return hashlib.sha256(data).hexdigest()
 
+def get_object(filename):
+    """ Get the object from a file """
+    filepath = Path(filename) / (filename + ".pkl")
+    with open(filepath, "rb") as file:
+        data = file.read()
+    return pickle.loads(data)
+
 def compare_hashes(filename1, filename2):
     """ Compare the hashes of two files """
     hash1 = get_hash(filename1)
@@ -19,6 +27,16 @@ def compare_hashes(filename1, filename2):
     if hash1 != hash2:
         WRITE_FILE.write(f"Files {filename1} and {filename2} are different\n")
     return hash1 == hash2
+
+def compare_objects(filename1, filename2):
+    """ Compare the hashes of two files """
+    obj1 = get_object(filename1)
+    obj2 = get_object(filename2)
+    # Compare the objects
+    if obj1 != obj2:
+        WRITE_FILE.write(f"Objects {filename1} and {filename2} are different\n")
+    return obj1 == obj2
+
 
 def generate_filenames():
     """ Generate filenames for the different operating systems and python versions """
@@ -57,11 +75,41 @@ def compare_files(filenames):
     print("Success:", success_count)
     print("Fail:", fail_count)
 
+def compare_deserialized_data(filenames):
+    """ Compare the files """
+    success_count = 0
+    fail_count = 0
+    # Compare files within the same operating system
+    for os_files in filenames:
+        for i in range(len(os_files)):
+            for j in range(i + 1, len(os_files)):
+                result = compare_objects(os_files[i], os_files[j])
+                if result:
+                    success_count+=1
+                else:
+                    fail_count+=1
+
+    # Compare files across different operating systems for the same python version
+    for version_index in range(len(filenames[0])):
+        for i in range(len(filenames)):
+            for j in range(i + 1, len(filenames)):
+                resualt = compare_objects(filenames[i][version_index], filenames[j][version_index])
+                if resualt:
+                    success_count+=1
+                else:
+                    fail_count+=1
+
+    print("Success:", success_count)
+    print("Fail:", fail_count)
+
 def main():
     """ Main function """
     filenames = generate_filenames()
+    print("Starting hash comparison")
     compare_files(filenames)
-    print("Comparison done")
+    print("Hash comparison done\nStarting object comparison")
+    compare_deserialized_data(filenames)
+    print("Object comparison done")
     print(WRITE_FILE.read())
     WRITE_FILE.close()
 
